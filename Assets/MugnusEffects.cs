@@ -4,15 +4,24 @@ using UnityEngine;
 
 public class MugnusEffects : MonoBehaviour
 {
-    // Start is called before the first frame update
+    private Rigidbody rb;
+    public Vector3 angularV, v;
+
     void Start()
     {
-        
-    }
+        rb = GetComponent<Rigidbody>();
+    }// Start
 
-    // Update is called once per frame
-    void Update()
+
+    void FixedUpdate()
     {
-        
-    }
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            rb.angularVelocity = angularV;
+            rb.velocity = v;
+        }
+
+        rb.AddForce(Vector3.Cross(rb.angularVelocity, rb.velocity));
+
+    }//FixedUpdate
 }
